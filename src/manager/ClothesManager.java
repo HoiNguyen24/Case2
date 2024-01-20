@@ -5,6 +5,9 @@ import src.validate.ClothesValidate;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class ClothesManager {
     ArrayList<Clothes> clothes = new ArrayList<>();
@@ -13,6 +16,7 @@ public class ClothesManager {
     static Scanner scanner = new Scanner(System.in);
     public void add(Clothes newClothes){
         clothes.add(newClothes);
+        clothes.get(clothes.size()-1).getDates().add(System.currentTimeMillis());
     }
 
     public void edit(Clothes newClothes,int index){
@@ -26,6 +30,26 @@ public class ClothesManager {
         for (Clothes clothe :
              clothes) {
             System.out.println(clothe);
+        }
+    }
+    public void displayHistory(){
+        String code = scanner.nextLine();
+        Clothes clothe = clothes.get(FindbyCode(code));
+        clothe.getDates().display();
+    }
+    public void displayByDay(){
+        Pattern pattern = Pattern.compile("^[0-9]{4}\s[0-9]{1,2}\s[0-9]{1,2}$");
+        System.out.println("Nhập ngày tháng(VD: 2022 02 21)");
+        String date = scanner.nextLine();
+        Matcher matcher = pattern.matcher(date);
+        if(matcher.find()){
+            for(int  i = 0 ; i < clothes.size();i++){
+                Clothes cloth = clothes.get(i);
+                for(int j = 0 ; j < cloth.getDates().getSize();j++){
+                    if(date.equals(cloth.getDates().getDates(j).toString()))
+                        System.out.println(cloth.getDates().getDates(j));
+                }
+            }
         }
     }
     public Clothes create(){
@@ -82,7 +106,27 @@ public class ClothesManager {
             System.out.println("không tìm thấy mã hàng muốn sửa");
         else edit(create(),FindbyCode(stringBuffer.toString()));
     }
-//    Find by name
-
-
+    public void addQuantity(){
+        display();
+        stringBuffer.delete(0,stringBuffer.length()-1);
+        System.out.println("nhập mã áo phẩm muốn: ");
+        stringBuffer.append(scanner.nextLine());
+        int index = FindbyCode(stringBuffer.toString());
+        if( index == -1)
+            System.out.println("không tìm thấy áo");
+        else {
+            long quantity;
+            while(true){
+                System.out.println("Nhập số áo muốn thêm: ");
+                try{
+                    quantity = Long.parseLong(scanner.nextLine());
+                    break;
+                }catch (Exception e){
+                    System.out.println("Nhập lại");
+                }
+            }
+            clothes.get(index).setQuantity(clothes.get(index).getQuantity() + quantity);
+            clothes.get(index).getDates().add(System.currentTimeMillis());
+        }
+    }
 }

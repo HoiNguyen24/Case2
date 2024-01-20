@@ -7,12 +7,16 @@ public class PhotoDecal {
     private double length;
     private long price;
 
-    public PhotoDecal(String name,String code, double width, double length, long price) {
+    private long quantity;
+    private Dates dates;
+
+    public PhotoDecal(String name,String code, double width, double length, long price,long quantity) {
         this.name = name;
         this.code = code;
         this.width = width;
         this.length = length;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public PhotoDecal() {
@@ -58,6 +62,22 @@ public class PhotoDecal {
         this.code = code;
     }
 
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Dates getDates() {
+        return dates;
+    }
+
+    public void setDates(Dates dates) {
+        this.dates = dates;
+    }
+
     @Override
     public String toString() {
         return "PhotoDecal{" +
@@ -66,6 +86,7 @@ public class PhotoDecal {
                 ", width=" + width +
                 ", length=" + length +
                 ", price=" + price +
+                ", quantity=" + quantity +
                 '}';
     }
 }

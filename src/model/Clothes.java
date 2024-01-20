@@ -1,5 +1,8 @@
 package src.model;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class Clothes {
     private String code;
     private String name;
@@ -11,6 +14,8 @@ public class Clothes {
     private long price;
 
     private long quantity;
+
+    private Dates dates;
 
     public Clothes(String name, String type, String color, long price,long quantity, String code) {
         this.name = name;
@@ -62,6 +67,22 @@ public class Clothes {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public Dates getDates() {
+        return dates;
+    }
+
+    public void setDates(Dates dates) {
+        this.dates = dates;
     }
 
     @Override

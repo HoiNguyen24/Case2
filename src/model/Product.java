@@ -7,6 +7,7 @@ public class Product {
     private PhotoDecal photoDecal;
     private String tempName;
     private long price;
+    private long quantity;
 
     public Product(String name,String code,Clothes clothes, PhotoDecal photoDecal,long price) {
         this.name = name;
@@ -65,6 +66,14 @@ public class Product {
 
     public void setTempName(String tempName) {
         this.tempName = tempName;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
     }
 
     @Override

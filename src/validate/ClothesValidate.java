@@ -24,10 +24,10 @@ public class ClothesValidate {
     public static StringBuffer Name(ArrayList<Clothes> clothes){
         System.out.println("Nhập tên sản phẩm: ");
         StringBuffer stringBuffer = new StringBuffer();
-        while(!checkName(clothes,stringBuffer)){
+        do{
             stringBuffer.delete(0,stringBuffer.length()-1);
             stringBuffer.append(scanner.nextLine());
-        }
+        }while(!checkName(clothes,stringBuffer));
         return stringBuffer;
     }
 
@@ -45,11 +45,11 @@ public class ClothesValidate {
 
     public static StringBuffer Code(ArrayList<Clothes> clothes){
         StringBuffer stringBuffer = new StringBuffer();
-        while(!checkCode(clothes,stringBuffer)){
+        do{
             System.out.println("Nhập mã sản phẩm: ");
             stringBuffer.delete(0,stringBuffer.length()-1);
             stringBuffer.append(scanner.nextLine());
-        }
+        } while(!checkCode(clothes,stringBuffer));
         return stringBuffer;
     }
 }

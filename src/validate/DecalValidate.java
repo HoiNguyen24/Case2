@@ -19,11 +19,11 @@ public class DecalValidate {
     }
     public static String Name(ArrayList<PhotoDecal> photos) {
         StringBuffer stringBuffer = new StringBuffer();
-        while(!checkName(photos,stringBuffer.toString())){
+        do{
             System.out.println("Nhập tên hình: ");
             stringBuffer.delete(0,stringBuffer.length()-1);
             stringBuffer.append(scanner.nextLine());
-        }
+        }while(!checkName(photos,stringBuffer.toString()));
         return stringBuffer.toString();
     }
     public static boolean checkCode(ArrayList<PhotoDecal> photos,String code) {
@@ -38,11 +38,11 @@ public class DecalValidate {
     }
     public static String Code(ArrayList<PhotoDecal> photos){
         StringBuffer stringBuffer = new StringBuffer();
-        while(!checkCode(photos,stringBuffer.toString())){
+        do{
             System.out.println("Nhập mã hình: ");
             stringBuffer.delete(0,stringBuffer.length()-1);
             stringBuffer.append(scanner.nextLine());
-        }
+        }while(!checkCode(photos,stringBuffer.toString()));
         return stringBuffer.toString();
     }
 
