@@ -2,12 +2,14 @@ package src.model;
 
 public class PhotoDecal {
     private String name;
+    private String code;
     private double width;
     private double length;
     private long price;
 
-    public PhotoDecal(String name, double width, double length, long price) {
+    public PhotoDecal(String name,String code, double width, double length, long price) {
         this.name = name;
+        this.code = code;
         this.width = width;
         this.length = length;
         this.price = price;
@@ -46,5 +48,24 @@ public class PhotoDecal {
 
     public void setPrice(long price) {
         this.price = price;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "PhotoDecal{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", width=" + width +
+                ", length=" + length +
+                ", price=" + price +
+                '}';
     }
 }

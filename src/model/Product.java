@@ -1,14 +1,15 @@
 package src.model;
 
 public class Product {
-
+    private String name;
     private String code;
     private Clothes clothes;
     private PhotoDecal photoDecal;
-
+    private String tempName;
     private long price;
 
-    public Product(String code,Clothes clothes, PhotoDecal photoDecal,long price) {
+    public Product(String name,String code,Clothes clothes, PhotoDecal photoDecal,long price) {
+        this.name = name;
         this.code = code;
         this.clothes = clothes;
         this.photoDecal = photoDecal;
@@ -48,6 +49,22 @@ public class Product {
 
     public void setPhotoDecal(PhotoDecal photoDecal) {
         this.photoDecal = photoDecal;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTempName() {
+        return tempName;
+    }
+
+    public void setTempName(String tempName) {
+        this.tempName = tempName;
     }
 
     @Override

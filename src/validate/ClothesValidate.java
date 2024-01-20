@@ -4,6 +4,8 @@ import src.model.Clothes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import src.manager.ClothesManager;
 
@@ -30,6 +32,9 @@ public class ClothesValidate {
     }
 
     public static boolean checkCode(ArrayList<Clothes> clothes,StringBuffer code){
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{6}");
+        Matcher matcher = pattern.matcher(code);
+        if(matcher.find()) return false;
         for (Clothes clothe:
                 clothes) {
             if(code.equals(clothe.getCode()))
@@ -39,9 +44,9 @@ public class ClothesValidate {
     }
 
     public static StringBuffer Code(ArrayList<Clothes> clothes){
-        System.out.println("Nhập mã sản phẩm: ");
         StringBuffer stringBuffer = new StringBuffer();
         while(!checkCode(clothes,stringBuffer)){
+            System.out.println("Nhập mã sản phẩm: ");
             stringBuffer.delete(0,stringBuffer.length()-1);
             stringBuffer.append(scanner.nextLine());
         }
