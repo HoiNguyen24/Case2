@@ -7,30 +7,31 @@ import java.util.ArrayList;
 import static src.validate.ClothesValidate.scanner;
 
 public class ProductValidate {
-    public static boolean checkName(ArrayList<Product> products,String name){
-        for(Product product: products){
-            if(name.equals(product.getName())){
+    public static boolean checkName(ArrayList<Product> products, String name) {
+        for (Product product : products) {
+            if (name.equals(product.getName())) {
                 return false;
             }
         }
         return true;
 
     }
+
     public static String name(ArrayList<Product> products) {
         StringBuffer stringBuffer = new StringBuffer();
-        do{
+        do {
             System.out.println("Nhập tên mẫu áo: ");
-            if(stringBuffer.length() > 0){
-                stringBuffer.delete(0,stringBuffer.length() -1);
+            if (stringBuffer.length() > 0) {
+                stringBuffer.delete(0, stringBuffer.length());
             }
             stringBuffer.append(scanner.nextLine());
-        }while(!checkName(products,stringBuffer.toString()));
+        } while (!checkName(products, stringBuffer.toString()));
         return stringBuffer.toString();
     }
 
-    public static boolean checkCode(ArrayList<Product> products,String name){
-        for(Product product: products){
-            if(name.equals(product.getName())){
+    public static boolean checkCode(ArrayList<Product> products, String name) {
+        for (Product product : products) {
+            if (name.equals(product.getName())) {
                 return false;
             }
         }
@@ -38,15 +39,15 @@ public class ProductValidate {
 
     }
 
-    public static String code(ArrayList<Product> products){
+    public static String code(ArrayList<Product> products) {
         StringBuffer stringBuffer = new StringBuffer();
-        do{
+        do {
             System.out.println("Nhập tên mẫu áo: ");
-            if(stringBuffer.length() > 0){
-                stringBuffer.delete(0,stringBuffer.length() -1);
+            if (stringBuffer.length() > 0) {
+                stringBuffer.delete(0, stringBuffer.length());
             }
             stringBuffer.append(scanner.nextLine());
-        }while(!checkCode(products,stringBuffer.toString()));
+        } while (!checkCode(products, stringBuffer.toString()));
         return stringBuffer.toString();
     }
 }

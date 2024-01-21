@@ -1,6 +1,8 @@
 package src.manager;
 
+import src.IOManager.IOClothes;
 import src.model.Clothes;
+import src.model.Dates;
 import src.validate.ClothesValidate;
 
 import java.util.ArrayList;
@@ -13,10 +15,10 @@ public class ClothesManager {
     ArrayList<Clothes> clothes = new ArrayList<>();
     static StringBuffer stringBuffer = new StringBuffer();
 
-    static Scanner scanner = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
     public void add(Clothes newClothes){
         clothes.add(newClothes);
-        clothes.get(clothes.size()-1).getDates().add(System.currentTimeMillis());
+        clothes.get(clothes.size()-1).addHistory();
     }
 
     public void edit(Clothes newClothes,int index){
@@ -26,6 +28,12 @@ public class ClothesManager {
         clothes.remove(index);
     }
 
+    public void write(){
+        IOClothes.write(clothes);
+    }
+    public void read(){
+        clothes = IOClothes.read();
+    }
     public void display(){
         for (Clothes clothe :
              clothes) {
@@ -36,6 +44,12 @@ public class ClothesManager {
         String code = scanner.nextLine();
         Clothes clothe = clothes.get(FindbyCode(code));
         clothe.getDates().display();
+    }
+    public void displayAllHistory(){
+        for(Clothes cloth: clothes){
+            System.out.println(cloth.getName()+":");
+            cloth.getDates().display();
+        }
     }
     public void displayByDay(){
         Pattern pattern = Pattern.compile("^[0-9]{4}\s[0-9]{1,2}\s[0-9]{1,2}$");
@@ -49,6 +63,16 @@ public class ClothesManager {
                     if(date.equals(cloth.getDates().getDates(j).toString()))
                         System.out.println(cloth.getDates().getDates(j));
                 }
+            }
+        }
+    }
+    public  void findByCode(){
+        System.out.println("nhập mã code áo muốn tìm: ");
+        String code = scanner.nextLine();
+        for(Clothes cloth: clothes){
+            if(cloth.getCode().equals(code)){
+                System.out.println(cloth);
+                break;
             }
         }
     }
@@ -78,7 +102,7 @@ public class ClothesManager {
                 System.out.println("Nhập lại");
             }
         }
-        return new Clothes(name,type,color,price,quantity,code);
+        return new Clothes(name,type,color,price,quantity,code,new Dates());
     }
 //    Find by Clothes code
     public int FindbyCode(String code){
@@ -108,7 +132,7 @@ public class ClothesManager {
     }
     public void addQuantity(){
         display();
-        stringBuffer.delete(0,stringBuffer.length()-1);
+        stringBuffer.delete(0,stringBuffer.length());
         System.out.println("nhập mã áo phẩm muốn: ");
         stringBuffer.append(scanner.nextLine());
         int index = FindbyCode(stringBuffer.toString());
@@ -126,7 +150,7 @@ public class ClothesManager {
                 }
             }
             clothes.get(index).setQuantity(clothes.get(index).getQuantity() + quantity);
-            clothes.get(index).getDates().add(System.currentTimeMillis());
+            clothes.get(index).addHistory();
         }
     }
 }

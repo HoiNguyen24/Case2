@@ -1,9 +1,10 @@
 package src.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Clothes {
+public class Clothes implements Serializable {
     private String code;
     private String name;
 
@@ -17,16 +18,20 @@ public class Clothes {
 
     private Dates dates;
 
-    public Clothes(String name, String type, String color, long price,long quantity, String code) {
+    public void addHistory(){
+       dates.add();
+    }
+    public Clothes(String name, String type, String color, long price, long quantity, String code,Dates dates) {
         this.name = name;
         this.type = type;
         this.color = color;
         this.price = price;
         this.quantity = quantity;
         this.code = code;
+        this.dates = dates;
     }
-    public Clothes(){
 
+    public Clothes() {
     }
 
     public String getName() {

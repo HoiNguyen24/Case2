@@ -12,44 +12,44 @@ import src.manager.ClothesManager;
 public class ClothesValidate {
     static Scanner scanner = new Scanner(System.in);
 
-    public static boolean checkName(ArrayList<Clothes> clothes,StringBuffer name){
-        for (Clothes clothe:
+    public static boolean checkName(ArrayList<Clothes> clothes, StringBuffer name) {
+        for (Clothes clothe :
                 clothes) {
-            if(name.equals(clothe.getName()))
+            if (name.toString().equals(clothe.getName()))
                 return false;
         }
         return true;
     }
 
-    public static StringBuffer Name(ArrayList<Clothes> clothes){
+    public static StringBuffer Name(ArrayList<Clothes> clothes) {
         System.out.println("Nhập tên sản phẩm: ");
         StringBuffer stringBuffer = new StringBuffer();
-        do{
-            stringBuffer.delete(0,stringBuffer.length()-1);
+        do {
+            stringBuffer.delete(0, stringBuffer.length());
             stringBuffer.append(scanner.nextLine());
-        }while(!checkName(clothes,stringBuffer));
+        } while (!checkName(clothes, stringBuffer));
         return stringBuffer;
     }
 
-    public static boolean checkCode(ArrayList<Clothes> clothes,StringBuffer code){
+    public static boolean checkCode(ArrayList<Clothes> clothes, StringBuffer code) {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9]{6}");
-        Matcher matcher = pattern.matcher(code);
-        if(matcher.find()) return false;
-        for (Clothes clothe:
+        Matcher matcher = pattern.matcher(code.toString());
+        if (matcher.find()) return false;
+        for (Clothes clothe :
                 clothes) {
-            if(code.equals(clothe.getCode()))
+            if (code.toString().equals(clothe.getCode()))
                 return false;
         }
         return true;
     }
 
-    public static StringBuffer Code(ArrayList<Clothes> clothes){
+    public static StringBuffer Code(ArrayList<Clothes> clothes) {
         StringBuffer stringBuffer = new StringBuffer();
-        do{
+        do {
             System.out.println("Nhập mã sản phẩm: ");
-            stringBuffer.delete(0,stringBuffer.length()-1);
+            stringBuffer.delete(0, stringBuffer.length());
             stringBuffer.append(scanner.nextLine());
-        } while(!checkCode(clothes,stringBuffer));
+        } while (!checkCode(clothes, stringBuffer));
         return stringBuffer;
     }
 }

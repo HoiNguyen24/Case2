@@ -1,6 +1,8 @@
 package src.model;
 
-public class PhotoDecal {
+import java.io.Serializable;
+
+public class PhotoDecal implements Serializable {
     private String name;
     private String code;
     private double width;
@@ -10,13 +12,17 @@ public class PhotoDecal {
     private long quantity;
     private Dates dates;
 
-    public PhotoDecal(String name,String code, double width, double length, long price,long quantity) {
+    public void addHistory(){
+        dates.add();
+    }
+    public PhotoDecal(String name, String code, double width, double length, long price, long quantity,Dates dates) {
         this.name = name;
         this.code = code;
         this.width = width;
         this.length = length;
         this.price = price;
         this.quantity = quantity;
+        this.dates = dates;
     }
 
     public PhotoDecal() {

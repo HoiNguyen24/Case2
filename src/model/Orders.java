@@ -2,6 +2,7 @@ package src.model;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Orders {
     private String code;
@@ -52,10 +53,10 @@ public class Orders {
     @Override
     public String toString() {
         StringBuffer stringBuffer = new StringBuffer();
-        for (Product product:
-             products) {
-            stringBuffer.append(product.getCode() +","+ product.getQuantity());
+        for (Product product :
+                products) {
+            stringBuffer.append(product.getCode() + "," + product.getQuantity());
         }
-        return "|"+code +","+ phonenumber +","+ address +"|"+ stringBuffer;
+        return "|" + code + "," + phonenumber + "," + address + "|" + stringBuffer;
     }
 }

@@ -1,6 +1,8 @@
 package src.model;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String name;
     private String code;
     private Clothes clothes;
@@ -9,7 +11,7 @@ public class Product {
     private long price;
     private long quantity;
 
-    public Product(String name,String code,Clothes clothes, PhotoDecal photoDecal,long price) {
+    public Product(String name, String code, Clothes clothes, PhotoDecal photoDecal, long price) {
         this.name = name;
         this.code = code;
         this.clothes = clothes;
