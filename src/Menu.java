@@ -16,7 +16,7 @@ public class Menu {
 
     static DecalManager decalManager = new DecalManager();
 
-    static ProductManager productManager = new ProductManager();
+    static ProductManager productManager = new ProductManager(clothesManager,decalManager);
 
     static OrdersManager ordersManager = new OrdersManager(productManager);
 
@@ -68,16 +68,18 @@ public class Menu {
         while(true){
             System.out.println("1. in ra danh sách đơn");
             System.out.println("2. in ra đơn theo code");
-            System.out.println("3. in ra màn hình lợi nhuận theo đơn");
-            System.out.println("4. in ra màn hình lời nhuận cả danh sách đơn");
-            System.out.println("5. in ra màn hình những vật phẩm còn thiếu");
+            System.out.println("3. in ra màn hình những vật phẩm còn thiếu");
+            if(account.getRole().equals("admin")){
+                System.out.println("4. in ra màn hình lời nhuận cả danh sách đơn");
+                System.out.println("5. in ra loi nhuan theo don");
+            }
             System.out.println("10. thoát");
             StringBuffer stringBuffer = new StringBuffer();
             Pattern pattern;
             if(account.getRole().equals("admin")) {
                 pattern = Pattern.compile("^[0-9]{1,2}$");
             }else{
-                pattern = Pattern.compile("^[0-4]{1,2}$");
+                pattern = Pattern.compile("^[0-3]{1,2}$");
             }
                 stringBuffer.delete(0,stringBuffer.length());
                 System.out.println("Nhập lựa chọn: ");
@@ -92,13 +94,13 @@ public class Menu {
                             ordersManager.displayByCode();
                             break;
                         case 3:
-                            ordersManager.displayProfitEO();
+                            ordersManager.displayLackOrders(clothesManager,decalManager);
                             break;
                         case 4:
                             ordersManager.displayProfitAO();
                             break;
                         case 5:
-                            ordersManager.displayLackOrders(clothesManager,decalManager);
+                            ordersManager.displayProfitEO();
                             break;
                         case 10:
                             return;
@@ -151,7 +153,7 @@ public class Menu {
                             break;
                         case 7:
                             productManager.edit();
-                        case 8:
+                        case 10:
                             return;
                     }
             }

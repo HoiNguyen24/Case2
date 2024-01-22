@@ -20,7 +20,7 @@ public class OrdersManager {
     }
 
     public void read() {
-        IOOrders.read(productManager);
+        this.orders = IOOrders.read(this.productManager);
     }
 
     public void write() {

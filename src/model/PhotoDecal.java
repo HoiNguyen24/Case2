@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class PhotoDecal implements Serializable {
     private String name;
     private String code;
-    private double width;
-    private double length;
+    private long width;
+    private long length;
     private long price;
 
     private long quantity;
@@ -15,7 +15,7 @@ public class PhotoDecal implements Serializable {
     public void addHistory(){
         dates.add();
     }
-    public PhotoDecal(String name, String code, double width, double length, long price, long quantity,Dates dates) {
+    public PhotoDecal(String name, String code, long width, long length, long price, long quantity,Dates dates) {
         this.name = name;
         this.code = code;
         this.width = width;
@@ -40,7 +40,7 @@ public class PhotoDecal implements Serializable {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(long width) {
         this.width = width;
     }
 
@@ -48,7 +48,7 @@ public class PhotoDecal implements Serializable {
         return length;
     }
 
-    public void setLength(double length) {
+    public void setLength(long length) {
         this.length = length;
     }
 

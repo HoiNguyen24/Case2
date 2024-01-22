@@ -49,11 +49,11 @@ public class DecalValidate {
         return stringBuffer.toString();
     }
 
-    public static double unit(ArrayList<PhotoDecal> photos) {
-        double unit;
+    public static long unit(ArrayList<PhotoDecal> photos) {
+        long unit;
         while (true) {
             try {
-                unit = Double.parseDouble(scanner.nextLine());
+                unit = Long.parseLong(scanner.nextLine());
                 break;
             } catch (Exception e) {
                 System.out.println("Nhập lại");

@@ -12,9 +12,15 @@ import static src.manager.ClothesManager.scanner;
 
 public class ProductManager {
 
-    ClothesManager clothesManager = new ClothesManager();
+    ClothesManager clothesManager;
 
-    DecalManager decalManager = new DecalManager();
+    DecalManager decalManager;
+
+    public ProductManager(ClothesManager clothesManager, DecalManager decalManager) {
+        this.clothesManager = clothesManager;
+        this.decalManager = decalManager;
+    }
+
     ArrayList<Product> products = new ArrayList<>();
 
     public ArrayList<Product>
@@ -118,9 +124,11 @@ public class ProductManager {
         return new Product(name, code, cloth, decal, price);
     }
 
+
+
     public int findByCode(String code) {
         for (int i = 0; i < products.size(); i++) {
-            if (code.equals(products.get(i))) return i;
+            if (code.equals(products.get(i).getCode())) return i;
         }
         return -1;
     }

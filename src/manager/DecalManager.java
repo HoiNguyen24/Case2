@@ -79,20 +79,20 @@ public class DecalManager {
         String name = DecalValidate.Name(photos);
         String code = DecalValidate.Code(photos);
         System.out.println("Nhập chiều rộng: ");
-        double width = DecalValidate.unit(photos);
+        long width = DecalValidate.unit(photos);
         System.out.println("Nhập chiều dài: ");
-        double height = DecalValidate.unit(photos);
+        long height = DecalValidate.unit(photos);
         System.out.println("Nhập giá tiền: ");
-        long price = Long.parseLong(String.valueOf(DecalValidate.unit(photos)));
+        long price = DecalValidate.unit(photos);;
         System.out.println("Nhập số lượng: ");
-        long quantity = Long.parseLong(String.valueOf(DecalValidate.unit(photos)));
+        long quantity = DecalValidate.unit(photos);;
         return new PhotoDecal(name, code, width, height, price, quantity,new Dates());
     }
 
     //    find by code
     public int FindByCode(String code) {
         for (int i = 0; i < photos.size(); i++) {
-            if (code.equals(photos.get(i)))
+            if (code.equals(photos.get(i).getCode()))
                 return i;
         }
         return -1;

@@ -42,7 +42,7 @@ public class ProductValidate {
     public static String code(ArrayList<Product> products) {
         StringBuffer stringBuffer = new StringBuffer();
         do {
-            System.out.println("Nhập tên mẫu áo: ");
+            System.out.println("Nhập mã code: ");
             if (stringBuffer.length() > 0) {
                 stringBuffer.delete(0, stringBuffer.length());
             }

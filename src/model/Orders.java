@@ -57,6 +57,6 @@ public class Orders {
                 products) {
             stringBuffer.append(product.getCode() + "," + product.getQuantity());
         }
-        return "|" + code + "," + phonenumber + "," + address + "|" + stringBuffer;
+        return code + "," + phonenumber + "," + address + "|" + stringBuffer;
     }
 }
