@@ -19,7 +19,7 @@ public class DecalManager {
 
     public void add(PhotoDecal photoDecal) {
         photos.add(photoDecal);
-//        photos.get(photos.size()-1).addHistory();
+        photos.get(photos.size()-1).addHistory();
     }
 
     public void delete(int index) {
@@ -122,7 +122,7 @@ public class DecalManager {
 
     public void addQuantity() {
         display();
-        stringBuffer.delete(0, stringBuffer.length() - 1);
+        stringBuffer.delete(0, stringBuffer.length());
         System.out.println("nhập mã hình muốn: ");
         stringBuffer.append(scanner.nextLine());
         int index = FindByCode(stringBuffer.toString());

@@ -119,7 +119,8 @@ public class ClothesManager {
         stringBuffer.append(scanner.nextLine());
         if(FindbyCode(stringBuffer.toString()) == -1)
             System.out.println("không tìm thấy mã hàng muốn xóa");
-        else delete(FindbyCode(stringBuffer.toString()));
+        else
+            delete(FindbyCode(stringBuffer.toString()));
     }
 //    edit
     public void chooseEdit(){

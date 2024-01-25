@@ -29,6 +29,19 @@ public class ProductManager {
         return this.products;
     }
 
+    public Product get(int i){
+        try {
+            return products.get(i);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public ArrayList<Product> getTProducts(){
+        ArrayList<Product> tempProducts = this.products;
+        return tempProducts;
+    }
+
     public void add(Product product) {
         products.add(product);
     }
@@ -124,21 +137,34 @@ public class ProductManager {
         return new Product(name, code, cloth, decal, price);
     }
 
-
-
     public int findByCode(String code) {
         for (int i = 0; i < products.size(); i++) {
             if (code.equals(products.get(i).getCode())) return i;
         }
         return -1;
+    }public int findByName(String name) {
+        for (int i = 0; i < products.size(); i++) {
+            if (products.get(i).getName().equals(name)) return i;
+        }
+        return -1;
     }
 
+    public int FindByNameVar(String name,String var){
+        for (int i = 0 ; i < products.size();i++){
+            if(products.get(i).getName().equals(name) && products.get(i).getClothes().getColor().equals(var))
+                return i;
+        }
+        return -1;
+    }
     public void delete() {
         display();
         StringBuffer stringBuffer = new StringBuffer();
         System.out.println("Nhập mã mẫu áo muốn xóa: ");
-        if (findByCode(stringBuffer.toString()) == -1) System.out.println("Không tìm thấy mẫu áo muốn xóa");
-        else delete(findByCode(stringBuffer.toString()));
+        stringBuffer.append(scanner.nextLine());
+        if (findByCode(stringBuffer.toString()) == -1)
+            System.out.println("Không tìm thấy mẫu áo muốn xóa");
+        else
+            delete(findByCode(stringBuffer.toString()));
     }
 
     public void edit() {

@@ -13,6 +13,9 @@ public class ClothesValidate {
     static Scanner scanner = new Scanner(System.in);
 
     public static boolean checkName(ArrayList<Clothes> clothes, StringBuffer name) {
+//        Pattern pattern = Pattern.compile("^[A-Z]+");
+//        Matcher matcher = pattern.matcher(name.toString());
+//        if (matcher.find()) return false;
         for (Clothes clothe :
                 clothes) {
             if (name.toString().equals(clothe.getName()))

@@ -1,12 +1,17 @@
 package src.manager;
 
-import src.IOManager.IOOrders;
+import org.apache.poi.ss.usermodel.*;
 import src.model.Clothes;
 import src.model.Orders;
 import src.model.PhotoDecal;
 import src.model.Product;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+
 
 import static src.manager.ClothesManager.scanner;
 
@@ -19,12 +24,17 @@ public class OrdersManager {
         this.productManager = productManager;
     }
 
-    public void read() {
-        this.orders = IOOrders.read(this.productManager);
+    public void setOrders(ArrayList<Orders> orders){
+         this.orders = orders;
     }
-
-    public void write() {
-        IOOrders.write(orders);
+    public ArrayList<Orders> getOrders(){
+        return this.orders;
+    }
+    public void add(Orders orders){
+        this.orders.add(orders);
+    }
+    public Orders get(int i){
+            return this.orders.get(i);
     }
     public void display(){
         for (Orders order:
@@ -82,13 +92,11 @@ public class OrdersManager {
         }
     }
     public void displayLackOrders(ClothesManager clothesManager,DecalManager decalManager){
-        ArrayList<Clothes> cloth = clothesManager.clothes;
-        ArrayList<PhotoDecal> photo = decalManager.photos;
         for(int i = 0 ; i < orders.size(); i++){
              ArrayList<Product> product = orders.get(i).getProducts();
              for(int  j  = 0 ; j < product.size();j++){
-                 minusQuantityD(product.get(j),photo);
-                 minusQuantityC(product.get(j),cloth);
+                 minusQuantityD(product.get(j),decalManager.photos);
+                 minusQuantityC(product.get(j),clothesManager.clothes);
              }
         }
         System.out.println("======== Áo còn thiếu ============");
@@ -101,6 +109,63 @@ public class OrdersManager {
         for(int i = 0 ; i < decalManager.photos.size();i++){
             if(decalManager.photos.get(i).getQuantity() < 0){
                 System.out.println(clothesManager.clothes.get(i).getName()+":"+(-clothesManager.clothes.get(i).getQuantity()));
+            }
+        }
+    }
+    public int FindbyCode(String code){
+        for (int i = 0; i < orders.size(); i++) {
+            if(orders.get(i).getCode().equals(code))
+                return i;
+        }
+        return -1;
+    }
+
+    public void read(){
+         String file_name = "TEST.xlsx";
+         File file = new File(file_name);
+        Workbook workbook;
+        FileInputStream fins = null;
+        try {
+            fins = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            workbook = WorkbookFactory.create(fins);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Sheet sheet = workbook.getSheetAt(0);
+        FormulaEvaluator formulaEvaluator = workbook.getCreationHelper().createFormulaEvaluator();
+        for (Row row: sheet){
+            int count = 1;
+            StringBuffer code = new StringBuffer();
+            StringBuffer name = new StringBuffer();
+            StringBuffer color = new StringBuffer();
+            Long quantity = null;
+            for (Cell cell: row){
+                CellValue cellValue = formulaEvaluator.evaluate(cell);
+                String Value= cellValue.getStringValue();
+                if(count == 1){
+                    code.append(Value);
+                    if(FindbyCode(code.toString()) == -1)
+                        orders.add(new Orders(code.toString(),null,null,new ArrayList<Product>()));
+                }
+                if(count == 6){
+                    name.append(Value);
+                }
+                else if(count  == 7){
+                    color.append(Value);
+                    if(orders.get(FindbyCode(code.toString())).checkProduct(name.toString()))
+                     orders.get(FindbyCode(code.toString())).add(productManager.get(productManager.FindByNameVar(name.toString(),color.toString())));
+                }
+                else if(count == 8){
+                    System.out.println("code:"+code+"name:"+name);
+                    quantity = Long.parseLong(Value);
+                    orders.get(FindbyCode(code.toString())).setQuantity(orders.get(FindbyCode(code.toString())).getProduct(name.toString()),quantity);
+                }
+
+                count++;
             }
         }
     }

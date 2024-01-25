@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static src.manager.ClothesManager.scanner;
 
 public class Menu {
     static AccountManager accountManager = new AccountManager();
@@ -328,7 +327,6 @@ public class Menu {
                             clothesManager.write();
                             decalManager.write();
                             productManager.write();
-                            ordersManager.write();
                             return;
                     }
             }
@@ -372,7 +370,4 @@ public class Menu {
         } else System.out.println("đăng nhập bị lỗi");
     }
 
-    public static void main(String[] args) {
-        BaseMenu();
-    }
 }
