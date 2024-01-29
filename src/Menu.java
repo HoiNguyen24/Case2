@@ -93,7 +93,7 @@ public class Menu {
                             ordersManager.displayByCode();
                             break;
                         case 3:
-                            ordersManager.displayLackOrders(clothesManager,decalManager);
+                            ordersManager.displayNeedProduct(clothesManager,decalManager);
                             break;
                         case 4:
                             ordersManager.displayProfitAO();
@@ -342,8 +342,8 @@ public class Menu {
         accountManager.add(new Account("admin","admin","admin"));
         while (true){
             System.out.println("1. login \n"
-                    + "2. register \n"
-                    + "3. thoát");
+                             + "2. register \n"
+                             + "3. thoát");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -370,4 +370,7 @@ public class Menu {
         } else System.out.println("đăng nhập bị lỗi");
     }
 
+    public static void main(String[] args) {
+        BaseMenu();
+    }
 }

@@ -24,7 +24,7 @@ public class AccountManager {
     public void display(){
         for (Account account:
              accounts) {
-            System.out.println(account);
+            System.out.println(account.getName() + account.getRole());
         }
     }
     public void add(Account account) {

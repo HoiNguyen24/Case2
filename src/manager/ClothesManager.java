@@ -15,6 +15,10 @@ public class ClothesManager {
     ArrayList<Clothes> clothes = new ArrayList<>();
     static StringBuffer stringBuffer = new StringBuffer();
 
+    public ArrayList<Clothes> getClothes() {
+        return clothes;
+    }
+
     public static Scanner scanner = new Scanner(System.in);
     public void add(Clothes newClothes){
         clothes.add(newClothes);

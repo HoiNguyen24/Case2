@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<DialogPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <header>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="170.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="189.0" layoutY="134.0" text="Thêm áo trơn mới">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+    </header>
+    <content>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="379.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="143.0" layoutY="40.0" text="Nhập mã áo:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="clothescode" layoutX="288.0" layoutY="42.0" />
+            <TextField fx:id="clothesname" layoutX="288.0" layoutY="89.0" />
+            <TextField fx:id="clothescolor" layoutX="288.0" layoutY="138.0" />
+            <TextField fx:id="clothertype" layoutX="288.0" layoutY="185.0" />
+            <TextField fx:id="clohesprice" layoutX="288.0" layoutY="235.0" />
+            <TextField fx:id="clotthesquantitty" layoutX="288.0" layoutY="285.0" />
+            <Label layoutX="143.0" layoutY="87.0" text="Nhập tên áo:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="143.0" layoutY="136.0" text="Nhập màu áo:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="143.0" layoutY="183.0" text="Nhập loại áo:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="143.0" layoutY="233.0" text="Nhập giá áo:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="143.0" layoutY="282.0" text="Nhập số lượng:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+    </content>
+    <expandableContent>
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="320.0" />
+    </expandableContent>
+</DialogPane>

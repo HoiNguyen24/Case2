@@ -91,6 +91,59 @@ public class OrdersManager {
             }
         }
     }
+    public void displayNeedProduct(ClothesManager clothesManager,DecalManager decalManager){
+        ProductManager productManager1 = new ProductManager(clothesManager,decalManager);
+
+        for(int i = 0 ; i < orders.size(); i++){
+            ArrayList<Product> product = orders.get(i).getProducts();
+            for(int  j  = 0 ; j < product.size();j++){
+               if(productManager1.findByCode(product.get(j).getName()) == -1){
+                   productManager1.add(product.get(j));
+               }
+               else{
+                   productManager1.get(productManager1.findByCode(product.get(j).getName())).setQuantity(productManager1.get(productManager1.findByCode(product.get(j).getName())).getQuantity()+1);
+               }
+            }
+        }
+        ArrayList<Clothes> tempClothes = new ArrayList<>();
+        ArrayList<PhotoDecal> tempDecals = new ArrayList<>();
+        for(int i = 0 ; i < productManager1.products.size();i++){
+            tempClothes = addCLothes(tempClothes,productManager1.get(i).getClothes(),productManager1.get(i).getQuantity());
+            tempDecals = addDecal(tempDecals,productManager1.get(i).getPhotoDecal(),productManager1.get(i).getQuantity());
+        }
+        System.out.println("===========ÁO TRƠN================");
+        for (int i = 0 ; i < tempClothes.size();i++){
+            System.out.println(tempClothes.get(i).getName() +","+tempClothes.get(i).getQuantity());
+        }
+        System.out.println("===========Hình================");
+        for (int i = 0 ; i < tempDecals.size();i++){
+            System.out.println(tempDecals.get(i).getName() +","+tempDecals.get(i).getQuantity());
+        }
+    }
+    public ArrayList<PhotoDecal> addDecal(ArrayList<PhotoDecal> decals,PhotoDecal decal,Long quantiy){
+        for(int  i = 0 ; i < decals.size();i++){
+            if(decals.get(i).equals(decal)){
+                decals.get(i).setQuantity(decals.get(i).getQuantity() + quantiy);
+                return decals;
+            }
+        }
+        PhotoDecal decal1 = decal;
+        decal1.setQuantity(quantiy);
+        decals.add(decal1);
+        return decals;
+    }
+    public ArrayList<Clothes> addCLothes(ArrayList<Clothes> clothes,Clothes cloth,Long quanity){
+        for(int  i = 0 ; i < clothes.size();i++){
+            if(clothes.get(i).equals(cloth)){
+                clothes.get(i).setQuantity(clothes.get(i).getQuantity() + quanity);
+                return clothes;
+            }
+        }
+        Clothes clothes1 = cloth;
+        clothes1.setQuantity(quanity);
+        clothes.add(clothes1);
+        return clothes;
+    }
     public void displayLackOrders(ClothesManager clothesManager,DecalManager decalManager){
         for(int i = 0 ; i < orders.size(); i++){
              ArrayList<Product> product = orders.get(i).getProducts();
@@ -156,17 +209,22 @@ public class OrdersManager {
                 }
                 else if(count  == 7){
                     color.append(Value);
-                    if(orders.get(FindbyCode(code.toString())).checkProduct(name.toString()))
-                     orders.get(FindbyCode(code.toString())).add(productManager.get(productManager.FindByNameVar(name.toString(),color.toString())));
+                    if(orders.get(FindbyCode(code.toString())).checkProduct(name.toString())){
+                        Product product = productManager.get(productManager.FindByNameVar(name.toString(),color.toString()));
+                        product.setQuantity(0);
+                        orders.get(FindbyCode(code.toString())).add(product);
+                    }
                 }
                 else if(count == 8){
                     System.out.println("code:"+code+"name:"+name);
                     quantity = Long.parseLong(Value);
                     orders.get(FindbyCode(code.toString())).setQuantity(orders.get(FindbyCode(code.toString())).getProduct(name.toString()),quantity);
                 }
-
+                if(count == 9)
+                    continue;
                 count++;
             }
+            System.out.println(orders.get(FindbyCode(code.toString())));
         }
     }
 }
